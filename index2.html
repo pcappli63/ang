@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>d</title>
+	</head>
+	<body ng-app="myapp" ng-controller="myfriends">
+		<input type="text" ng-model="sch">
+		<ul>
+			<li ng-repeat="a in friends" ng-if="sch === undefind ? true : a.name.toLowerCase().indexOf(sch.toLowerCase()) >= 0">
+				{{a.name}}
+				{{a.phone}}
+				{{a.birth}}
+				{{a.email}}
+			</li>
+		</ul>
+
+
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+		<script>
+			var app = angular.module("myapp", []);
+			app.controller("myfriends",function ($scope, $http){
+				$http.get("getfriends.php").then(function (json){
+					$scope.friends = json.data;
+				});
+			});
+		</script>
+	</body>
+</html>

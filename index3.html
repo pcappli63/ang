@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>d</title>
+	</head>
+	<body ng-app="myapp" ng-controller="myfriends">
+		<input type="text" ng-model="sch">
+			<li ng-repeat="a in friends | filter:sch:findfriend">
+		<ul>
+				{{a.name}}
+				{{a.phone}}
+				{{a.birth}}
+				{{a.email}}
+			</li>
+		</ul>
+
+
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+		<script>
+			var app = angular.module("myapp", []);
+			app.controller("myfriends",function ($scope, $http){
+				$http.get("getfriends.php").then(function (json){
+					$scope.friends = json.data;
+				});
+				$scope.findfriend = function(name,sch){
+					return (""+name).indexOf(""+sch) > -1; 	
+				};
+			});
+		</script>
+	</body>
+</html>

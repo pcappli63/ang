@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>d</title>
+	</head>
+	<body ng-app="myapp" ng-controller="myfriends">
+		<input type="text" ng-model="sch">
+		
+		<ul>
+			<li ng-repeat="a in friends" ng-if="a.name.match(sch)">
+				{{a.name}}
+				{{a.phone}}
+			</li>
+		</ul>
+
+
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+		<script>
+			var app = angular.module("myapp", []);
+			app.controller("myfriends",function ($scope){
+				$scope.friends = [
+					{
+						"name": "홍길동",
+						"phone": "010-1234-5678"
+					},
+					{
+						"name": "가가가",
+						"phone": "010-2345-6789"
+					},
+					{
+						"name": "나나나",
+						"phone": "010-3456-7890"
+					},
+					{
+						"name": "다다다",
+						"phone": "010-4567-8901"
+					},
+					{
+						"name": "라라라",
+						"phone": "010-5678-9012"
+					}
+				];
+			});
+		</script>
+	</body>
+</html>
